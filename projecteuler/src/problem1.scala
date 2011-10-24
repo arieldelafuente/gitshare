@@ -7,15 +7,13 @@
 
 object problem1 {
   def main(args: Array[String]): Unit = {
-    println(summultiplesof5and3(9))
-    println(summultiplesof5and3(999))
+    println(problem1(9))
+    println(problem1(999))
   }
-  
-  def summultiplesof5and3(tonum: Int): Int = {
+
+  def problem1(tonum: Int): Int = {
     var thesum = 0
-    for (i <- 1 to tonum) { 
-      thesum += (if (i%5 == 0 || i%3 == 0) i else 0) 
-    }
+    for { i <- 1 to tonum if (i % 3 == 0 || i % 5 == 0) } thesum += i
     return thesum
   }
 }
