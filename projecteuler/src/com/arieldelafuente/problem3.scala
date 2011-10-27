@@ -9,16 +9,32 @@ package com.arieldelafuente
 object problem3 {
 
   def main(args: Array[String]): Unit = {
-    println(lpf1(600851475143L))
+    println(findlargestprimefactor(600851475143L))
   }
   
-  def isprime(n: BigInt): Boolean = {
-    for(i <- n-1 to 2 by -1) if(n % i == 0) return false
-    return true
+  def findlargestprimefactor(m: BigInt): BigInt = findfactors(m, bigintsquareroot(m))
+
+  def isprime(m: BigInt, n: BigInt): Boolean = {
+    if (n == 2) return true
+    else if (m % (n - 1) == 0) false else isprime(m, n - 1)
+  }
+
+  def findfactors(m: BigInt, n: BigInt): BigInt = {
+    if (n == 1) return m
+    else 
+      if (m % n == 0) 
+        if (isprime(n, n)) return n
+        else return findfactors(m, n - 1)
+      else return findfactors(m, n - 1)
   }
   
-  def lpf1(n: BigInt): BigInt = {
-    for(i <- n-1 to 2 by -1) if(n % i == 0 && isprime(i)) return i
-    return n
-  }
+  def bigintsquareroot(m: BigInt): BigInt = funcsquareroot(m,1)
+  
+  def funcsquareroot(n: BigInt, g: BigInt): BigInt = {    
+    if (n > 0) {     
+      val res = ((n/g + g)/2)            
+      if (g == res) g else funcsquareroot(n,res)
+    } else g
+  }  
+  
 }
