@@ -1,3 +1,4 @@
+package com.arieldelafuente
 
 /*
  * Problem 2 http://projecteuler.net/problem=2
@@ -22,7 +23,7 @@ object problem2 {
   
   def recursive1(n: Int, i: Int): Int = {
     val f = fibo(i)
-    if (f < n) (f * ((f % 2) - 1).abs) + recursive1(n, i+1)
+    if (f <= n) (f * ((f % 2) - 1).abs) + recursive1(n, i+1)
     else 0
   }
   
@@ -32,7 +33,7 @@ object problem2 {
     var f = 0
     
     f = fibo(i)
-    while (f < n) {
+    while (f <= n) {
       thesum += (if (f % 2 == 0) f else 0)
       i += 1
       f = fibo(i)
