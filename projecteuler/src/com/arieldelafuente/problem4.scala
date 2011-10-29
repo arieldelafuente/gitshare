@@ -9,7 +9,7 @@ package com.arieldelafuente
 object problem4 {
 
   def main(args: Array[String]): Unit = {
-    val numdigits = 2
+    val numdigits = 3
     
     listpals(numdigits, getlargestproduct(numdigits))  
   }
@@ -19,13 +19,12 @@ object problem4 {
     val y = numscale(m-1)-1
     val z = numscale(m)
     
-    if (!isprime(x,x)) {
+    if (!isprime(x)) {
       if (x == findfactor(x,x-1,y,z)) {
         println(x)
         return
       }
     }
-    
     if (n > y) listpals(m,x-1)
   }
   
@@ -42,25 +41,17 @@ object problem4 {
   def pickfactor(n: BigInt, minfac: BigInt, maxfac: BigInt): Boolean = 
     (n > minfac && n < maxfac)
  
-  def isprime(m: BigInt, n: BigInt): Boolean = {
-    if (n == 2) return true
-    else if (m % (n - 1) == 0) false else isprime(m, n - 1)
-  }
-  
   def getnextpalindromefrom(num: BigInt): BigInt = {
     if (num > 0) 
-      if (ispalindrome(num)) num
-      else getnextpalindromefrom(num-1)
+      if (ispalindrome(num)) num else getnextpalindromefrom(num-1)
     else
       getnextpalindromefrom(num-1)
   }
   
-
   def getlargestproduct(numdig: Int): BigInt = {
     val mpx = numscale(numdig)-1
     mpx * mpx
   }
-
 
   def numscale(n: Int): BigInt = if (n == 0) 1 else 10 * numscale(n-1)
   
@@ -78,5 +69,30 @@ object problem4 {
 
     if (m > 0) c :: pushdigitstolist(d,a) else List(c)
   }
+  
+  def isprime(n: BigInt): Boolean = fprimality(n,bigintsquareroot(n))
+  
+  def bigintsquareroot(m: BigInt): BigInt = fsquareroot(m,1)
+
+  def fprimality(m: BigInt, n: BigInt): Boolean = {
+    if (List(2,3,5).contains(m)) return true
+    
+    if (m % 2 == 0 || m % 5 == 0) return false
+        
+    if (n == 2) return true
+    
+    if (n == 1) return false
+    
+    if (m % n == 0) return false 
+    else return fprimality(m, n - 1)
+  }
+  
+  def fsquareroot(n: BigInt, g: BigInt): BigInt = {    
+    if (n > 0) {     
+      val res = ((n/g + g)/2)            
+      if (g == res) g else fsquareroot(n+1,res)
+    } else g
+  }  
+  
   
 }
