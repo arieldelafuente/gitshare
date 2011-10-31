@@ -13,6 +13,14 @@ package com.arieldelafuente
 
 object problem9 {
 
-  def main(args: Array[String]): Unit = {}
+  def main(args: Array[String]): Unit = {
+    for{a <- 1 to 500
+        b <- a to 500} {
+          val c = 1000 - a - b
+       if (ispythagtriplet(a,b,c)) println(a + " * " + b + " * " + c + " = " + (a*b*c))
+    }
+  }
+  
+  def ispythagtriplet(a: Int, b: Int, c: Int): Boolean = ((a*a + b*b) == (c*c))
 
 }
