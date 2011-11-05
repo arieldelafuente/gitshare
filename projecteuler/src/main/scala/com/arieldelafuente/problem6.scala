@@ -17,23 +17,10 @@ package com.arieldelafuente
  * first one hundred natural numbers and the square of the sum.
  */
 
-object problem6 {
+object problem6 extends Application {
 
-  def main(args: Array[String]): Unit = {
-    val prob = 100
+  val prob = 100
 
-    println(sqofsum(prob,0)-sumofsq(prob,0))
-  }
-  
-  def sumofsq(m: Int, n: Long): BigInt = {
-    if (m == 0) return n
-    else sumofsq(m - 1, n + (m*m))
-  }
-  
-  def sqofsum(m: Int, n: Long): BigInt = {
-    if (m == 0) n*n
-    else sqofsum(m - 1, n + m)
-  }
+  println(euler.sqofsum(prob, 0) - euler.sumofsq(prob, 0))
 
 }
-

@@ -12,22 +12,20 @@ package com.arieldelafuente
  * not exceed four million, find the sum of the even-valued terms.
  */
 
-object problem2 {
+object problem2 extends Application {
 
-  def main(args: Array[String]): Unit = {
-    println(nonrecursive(4000000))
-    println(recursive1(4000000,1))
-  }
-
+  println(sum_even_fibo_rescursive(4000000,1))
+  
+  
   def fibo(n: Int): Int = if (n < 2) n else fibo(n - 1) + fibo(n - 2)
   
-  def recursive1(n: Int, i: Int): Int = {
+  def sum_even_fibo_rescursive(n: Int, i: Int): Int = {
     val f = fibo(i)
-    if (f <= n) (f * ((f % 2) - 1).abs) + recursive1(n, i+1)
+    if (f <= n) (f * ((f % 2) - 1).abs) + sum_even_fibo_rescursive(n, i+1)
     else 0
   }
   
-  def nonrecursive(n: Int): Int = {
+  def sum_even_fibo_nonrescursive(n: Int): Int = {
     var thesum = 0
     var i = 1
     var f = 0
@@ -38,6 +36,6 @@ object problem2 {
       i += 1
       f = fibo(i)
     } 
-    return thesum
+    thesum
   }
 }

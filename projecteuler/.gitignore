@@ -1,2 +1,25 @@
+# SBT
+boot/
+target/
+.history
+
+# Eclipse
 .cache
-/projecteuler/bin
+.classpath
+.project
+.scala_dependencies
+.settings/
+.target/
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# TextMate
+*.tmproj
+
+# Mac
+.DS_Store

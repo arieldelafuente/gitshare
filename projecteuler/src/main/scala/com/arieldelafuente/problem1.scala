@@ -8,17 +8,14 @@ package com.arieldelafuente
  * 
 */
 
-object problem1 {
+object problem1 extends Application {
 
-  def main(args: Array[String]): Unit = {
-    println(problem1(9))
-    println(problem1(999))
-  }
-
-  def problem1(tonum: Int): Int = {
+  println(sum_multiples3and5_below(1000))
+  
+  def sum_multiples3and5_below(anum: Int): Int = {
     var thesum = 0
-    for { i <- 1 to tonum if (i % 3 == 0 || i % 5 == 0) } thesum += i
+    for { i <- 1 to anum-1 if (i % 3 == 0 || i % 5 == 0) } thesum += i
     return thesum
   }
-
+  
 }
