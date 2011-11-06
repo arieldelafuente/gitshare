@@ -1,6 +1,20 @@
 package com.arieldelafuente
 
 object euler {
+  
+  def get_numofdivisors_ofn(n: BigInt): Int = {
+    var facts: List[BigInt] = List()
+    var divsr: BigInt = 1
+        
+    while (divsr <= bigintsquareroot(n)) {
+      if (n % divsr == 0) facts = (n / divsr) :: divsr :: facts
+      divsr += 1
+    }
+    return facts.length
+  }
+
+  def get_nthtriangle(n: BigInt, p: BigInt): BigInt = if (p == n) p else (get_nthtriangle(n, p + 1) + p)
+
   def isprime(n: BigInt): Boolean = fprimality(n, bigintsquareroot(n))
 
   def bigintsquareroot(m: BigInt): BigInt = fsquareroot(m, 1)
