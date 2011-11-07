@@ -2,6 +2,8 @@ package com.arieldelafuente
 
 object euler {
   
+  def factorial(n: BigInt): BigInt = if(n == 0) 1 else n * factorial(n-1)
+  
   def get_numofdivisors_ofn(n: BigInt): Int = {
     var facts: List[BigInt] = List()
     var divsr: BigInt = 1

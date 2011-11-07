@@ -18,5 +18,8 @@ class testeuler extends FunSuite {
   test("get_numofdivisors is 6 when n is 28") { expect(6) { euler.get_numofdivisors_ofn(28) } }
   test("get_numofdivisors is 2 when n is 13") { expect(2) { euler.get_numofdivisors_ofn(13) } }
   test("get_numofdivisors is 2 when n is 2") { expect(2) { euler.get_numofdivisors_ofn(2) } }
-  test("get_numofdivisors is 5 when n is 100") { expect(9) { euler.get_numofdivisors_ofn(100) } }
+  test("get_numofdivisors is 10 when n is 100") { expect(10) { euler.get_numofdivisors_ofn(100) } }
+  
+  test("factorial is 120 for 5") { expect(120) { euler.factorial(5) } }
+  
 }
