@@ -1,0 +1,7 @@
+@(contactForm: Form[Contact])
+
+<h1>ERRORS</h1>
+
+@if(contactForm.hasErrors) {
+	@contactForm.errors.foreach(e => println(e.message))
+}

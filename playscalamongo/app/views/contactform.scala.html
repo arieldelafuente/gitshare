@@ -1,0 +1,40 @@
+@(contactForm: Form[Contact])
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contact Form</title>
+<link rel="stylesheet" href="assets/stylesheets/main.css" />
+</head>
+<body>
+	<form name="contactform" action="/contact" method="post">
+		<section id="personalinfo">
+			<header>
+				<h1>PERSONAL INFO</h1>
+			</header>
+			<div class="onelinefset">
+				<label>Name</label> 
+				@helper.inputText(contactForm("firstName"), '_label -> "", 'required -> "required", 'placeholder -> "Joe")
+				@helper.inputText(contactForm("lastName"), '_label -> "",'required -> "required", 'placeholder -> "Smith")
+			</div>
+			<div class="fset">
+				@helper.inputText(contactForm("emailAddy"), '_label -> "Email", 'type -> "email", 'required -> "required", 'placeholder -> "email@domain.com")
+			</div>
+			<div class="fset">
+				@helper.inputText(contactForm("phoneNo"), '_label -> "Phone", 'type -> "tel", 'required -> "required", 'placeholder -> "###-###-####")
+			</div>
+		</section>
+		<section id="contactnotes">
+			<header>
+				<h1>NOTES</h1>
+			</header>
+			<div class="multilinefset">
+				@helper.textarea(contactForm("personNotes"), 'id -> "personNotes", '_label -> "")
+			</div>
+		</section>
+		<input class="buttons" type="submit" value="Save" /> 
+		<input class="buttons" type="reset" value="Cancel" />
+	</form>
+</body>
+</html>

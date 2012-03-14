@@ -1,0 +1,97 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+label {
+	font-size: 1.2em;
+}
+
+input {
+	font-size: 1.2em;
+}
+
+.fset dl {
+	display: block;
+	margin: 5px 0px;
+}
+
+.fset dl dt {
+	display: inline-block;
+	width: 100px;
+}
+
+.fset dl dd {
+	display: inline-block;
+	margin-left: 0px;
+}
+
+.fset {
+	vertical-align: middle;
+	margin: 10px 0px;
+}
+
+.onelinefset label {
+	display: inline-block;
+	width: 100px;
+}
+
+.onelinefset dl dd {
+	display: inline-block;
+	margin-left: 0px;
+}
+
+.onelinefset dl dt {
+	display: none;
+}
+
+.onelinefset dl {
+	display: inline-block;
+	margin: 0px;
+}
+
+.onelinefset {
+	margin: 10px 0px;
+}
+
+.multilinefset dl {
+	display: block;
+	margin: 5px 0px;
+}
+
+.multilinefset dl dt {
+	display: none;
+}
+
+.multilinefset dl dd {
+	display: inline-block;
+	margin-left: 0px;
+}
+
+.multilinefset {
+	vertical-align: middle;
+	margin: 10px 0px;
+}
+
+section>header>h1 {
+	font-weight: bold;
+	line-height: 1.1;
+	color: #fff;
+	background: #666;
+	border: 1px solid #333;
+	padding: 2px 6px;
+}
+
+#personNotes {
+	height: 100px;
+	width: 600px;
+}
+
+label[for="nota"] {
+	vertical-align: top;
+}
+
+.buttons {
+	width: 5em;
+}
