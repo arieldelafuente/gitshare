@@ -7,6 +7,8 @@ object ApplicationBuild extends Build {
     val appName         = "playscalamongo"
     val appVersion      = "1.0-SNAPSHOT"
 
+    val casbah = "com.mongodb.casbah" %% "casbah" % "2.1.5.0"
+
     val appDependencies = Seq(
       // Add your project dependencies here,
     )

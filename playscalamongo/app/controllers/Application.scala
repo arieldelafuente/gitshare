@@ -17,13 +17,21 @@ object Application extends Controller {
       "firstName" -> text,
       "lastName" -> text,
       "emailAddy" -> text,
+      "phoneNos" -> text,
       "personNotes" -> text)(Contact.apply)(Contact.unapply))
 
   def contactform = Action {
-    Ok(views.html.contactform(aContactForm))
+    Ok(views.html.contactshowform(aContactForm))
   }
 
-  def savecontact = Action {
+  def sayHello = Action {
+    println("HELLO HELLO HELLO")
+    println("HELLO HELLO HELLO")
+    Ok(views.html.contactshowform(aContactForm))
+
+  }
+
+  def contactsubmit = Action {
     implicit request =>
       aContactForm.bindFromRequest.fold(
         haserrors => {
@@ -31,15 +39,17 @@ object Application extends Controller {
           Ok(views.html.showmeerrors(haserrors))
         },
         contact => {
-          dbcrunchingtime(contact)
-          Ok(views.html.contactsave(contact))
+          savingtodatabase(contact)
+          Ok(views.html.contactsaveresults(contact))
         })
   }
 
-  def dbcrunchingtime(c: Contact) {
+  def savingtodatabase(c: Contact) {
+    println("Saving these to the database...")
     println(c.firstName)
     println(c.lastName)
     println(c.emailAddy)
+    println(c.phoneNo)
     println(c.personNotes)
   }
 

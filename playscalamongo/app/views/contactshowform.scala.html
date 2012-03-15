@@ -13,28 +13,31 @@
 			<header>
 				<h1>PERSONAL INFO</h1>
 			</header>
-			<div class="onelinefset">
+			<fieldset class="oneline">
 				<label>Name</label> 
 				@helper.inputText(contactForm("firstName"), '_label -> "", 'required -> "required", 'placeholder -> "Joe")
 				@helper.inputText(contactForm("lastName"), '_label -> "",'required -> "required", 'placeholder -> "Smith")
-			</div>
-			<div class="fset">
+			</fieldset>
+			<fieldset>
 				@helper.inputText(contactForm("emailAddy"), '_label -> "Email", 'type -> "email", 'required -> "required", 'placeholder -> "email@domain.com")
-			</div>
-			<div class="fset">
+			</fieldset>
+			<fieldset>
 				@helper.inputText(contactForm("phoneNo"), '_label -> "Phone", 'type -> "tel", 'required -> "required", 'placeholder -> "###-###-####")
-			</div>
+			</fieldset>
 		</section>
 		<section id="contactnotes">
 			<header>
 				<h1>NOTES</h1>
 			</header>
-			<div class="multilinefset">
-				@helper.textarea(contactForm("personNotes"), 'id -> "personNotes", '_label -> "")
-			</div>
+			<fieldset class="multiline">
+				@helper.textarea(contactForm("personNotes"), '_label -> "")
+			</fieldset>
 		</section>
-		<input class="buttons" type="submit" value="Save" /> 
+		<input class="buttons" type="submit" value="Submit" /> 
 		<input class="buttons" type="reset" value="Cancel" />
 	</form>
+	
+	<a href="/sayhello">Write HELLO to console</a>
+
 </body>
 </html>

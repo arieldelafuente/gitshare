@@ -12,69 +12,73 @@ input {
 	font-size: 1.2em;
 }
 
-.fset dl {
+fieldset > dl {
 	display: block;
 	margin: 5px 0px;
 }
 
-.fset dl dt {
+fieldset > dl > dt {
 	display: inline-block;
 	width: 100px;
 }
 
-.fset dl dd {
+fieldset > dl > dd {
 	display: inline-block;
 	margin-left: 0px;
 }
 
-.fset {
+fieldset  {
 	vertical-align: middle;
 	margin: 10px 0px;
+	border: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 0px
 }
 
-.onelinefset label {
+fieldset.oneline label {
 	display: inline-block;
 	width: 100px;
 }
 
-.onelinefset dl dd {
+fieldset.oneline > dl > dd {
 	display: inline-block;
 	margin-left: 0px;
 }
 
-.onelinefset dl dt {
+fieldset.oneline > dl > dt {
 	display: none;
 }
 
-.onelinefset dl {
+fieldset.oneline > dl {
 	display: inline-block;
 	margin: 0px;
 }
 
-.onelinefset {
+fieldset.oneline {
 	margin: 10px 0px;
 }
 
-.multilinefset dl {
+fieldset.multiline > dl {
 	display: block;
 	margin: 5px 0px;
 }
 
-.multilinefset dl dt {
+fieldset.multiline > dl > dt {
 	display: none;
 }
 
-.multilinefset dl dd {
+fieldset.multiline > dl > dd {
 	display: inline-block;
 	margin-left: 0px;
 }
 
-.multilinefset {
+fieldset.multiline {
 	vertical-align: middle;
 	margin: 10px 0px;
 }
 
-section>header>h1 {
+section > header > h1 {
 	font-weight: bold;
 	line-height: 1.1;
 	color: #fff;
