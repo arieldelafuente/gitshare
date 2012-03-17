@@ -27,6 +27,10 @@ object Application extends Controller {
   def sayHello = Action {
     println("HELLO HELLO HELLO")
     println("HELLO HELLO HELLO")
+    
+    val c = new Contact("Greg","DelPilar","greg@tirad.com","555-111-2222","Little Gen111")
+    c.insertContact
+    
     Ok(views.html.contactshowform(aContactForm))
 
   }
