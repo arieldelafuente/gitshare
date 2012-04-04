@@ -3,11 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /				controllers.Application.index
+GET     /                    controllers.Application.index
 
-GET		/contact			controllers.Application.contactform
-POST		/contact			controllers.Application.contactsubmit
-GET		/sayhello		controllers.Application.sayHello
+POST		/contact/:id         controllers.Contacts.contactform(id: String)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file	controllers.Assets.at(path="/public", file)

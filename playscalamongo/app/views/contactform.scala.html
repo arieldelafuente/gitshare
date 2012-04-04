@@ -1,13 +1,14 @@
-@(contactForm: Form[Contact])
+@(c: Contact, contactForm: Form[Contact])
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Contact Form</title>
-<link rel="stylesheet" href="assets/stylesheets/main.css" />
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")" />
 </head>
 <body>
+	@tpltopmenu("Add New Contact")
 	<form name="contactform" action="/contact" method="post">
 		<section id="personalinfo">
 			<header>
@@ -30,14 +31,11 @@
 				<h1>NOTES</h1>
 			</header>
 			<fieldset class="multiline">
-				@helper.textarea(contactForm("personNotes"), '_label -> "")
+				@helper.inputText(contactForm("personNotes"), '_label -> "")
 			</fieldset>
 		</section>
-		<input class="buttons" type="submit" value="Submit" /> 
+		<input class="buttons" type="submit" value="Save" /> 
 		<input class="buttons" type="reset" value="Cancel" />
 	</form>
-	<br/>
-	<a href="/sayhello">Write HELLO to console</a>
-
 </body>
 </html>
