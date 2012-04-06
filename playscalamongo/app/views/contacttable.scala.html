@@ -23,7 +23,6 @@ $(document).ready(function() {
 </head>
 <body>
 	@tpltopmenu("MAIN MENU")
-	<form method="post" action="/contact/123">
 	<section>
 	<table id="myTable" class="tablesorter" >
 		<thead>
@@ -36,7 +35,9 @@ $(document).ready(function() {
 		<tbody>
 			@contactList.map {contact =>
 				<tr>
-					<td>@(contact.firstName + " " + contact.lastName)</td>
+					<td>
+						<a href="@routes.Contacts.contactform(contact.id)">@(contact.firstName + " " + contact.lastName)</a>
+					</td>
 					<td>@contact.emailAddy</td>
 					<td class="colselect">
 				<input type="radio" name="tbselect" value="@contact.id"/></td>
@@ -46,11 +47,9 @@ $(document).ready(function() {
 	</table>
 	<div class="formActions">
 		<input class="buttons" type="submit" value="New" /> 
-		<input class="buttons" type="submit" value="View" /> 
 		<input class="buttons" type="submit" value="Delete" /> 
 	</div>
 	</section>
-	</form>
 	@tplfooter()
 </body>
 </html>

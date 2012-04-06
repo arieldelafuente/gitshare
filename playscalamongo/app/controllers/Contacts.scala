@@ -17,11 +17,18 @@ object Contacts extends Controller {
       "personNotes" -> text)(Contact.apply)(Contact.unapply))
 
   def contactform(id: String) = Action {
-    Ok(views.html.contactform(ContactRepos.getContact(id), aContactForm))
+    val cn = ContactRepos.getContact(id)
+    val an = Map("id" -> cn.id,
+    				"firstName" -> cn.firstName,
+    				"lastName" -> cn.lastName,
+    				"emailAddy" -> cn.emailAddy,
+    				"phoneNo" -> cn.phoneNo,
+    				"personNotes" -> cn.personNotes)
+    Ok(views.html.contactform(aContactForm.bind(an)))
   }
 
   def contacttable = Action {
-    Ok(views.html.contacttable(ContactRepos.findContacts("")))
+    Ok(views.html.contacttable(ContactRepos.allContacts))
   }
 
   def contactsubmit = Action {

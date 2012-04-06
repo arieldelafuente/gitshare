@@ -1,4 +1,4 @@
-@(c: Contact, contactForm: Form[Contact])
+@(contactForm: Form[Contact])
 
 <!DOCTYPE html>
 <html>
@@ -34,8 +34,8 @@
 				@helper.inputText(contactForm("personNotes"), '_label -> "")
 			</fieldset>
 		</section>
-		<input class="buttons" type="submit" value="Save" /> 
-		<input class="buttons" type="reset" value="Cancel" />
+		<p>
+		<a href="@routes.Application.index">Back</a>
 	</form>
 </body>
 </html>
