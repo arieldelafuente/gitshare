@@ -110,6 +110,7 @@ label[for="nota"] {
 }
 
 .buttons {
+	display: inline;
 	width: 5em;
 	margin-top: 5px;
 	margin-left: 5px;

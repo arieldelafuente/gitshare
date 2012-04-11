@@ -6,4 +6,8 @@ case class Contact(
     lastName: String, 
     emailAddy: String, 
     phoneNo: String, 
-    personNotes: String) 
+    personNotes: String) {
+  
+  def this() = this("","","","","","")
+
+}

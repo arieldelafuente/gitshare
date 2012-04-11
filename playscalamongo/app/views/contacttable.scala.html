@@ -4,51 +4,55 @@
 <head>
 <meta charset="UTF-8">
 <title>Contacts Table</title>
-<link rel="stylesheet" media="screen"
-	href="@routes.Assets.at("stylesheets/main.css")"/>
-<link rel="stylesheet" href="@routes.Assets.at("stylesheets/tableview.css")"
-	type="text/css" id="" media="print, projection, screen" />
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/tableview.css")" type="text/css" id="" media="print, projection, screen" />
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
-<script type="text/javascript"
-	src="@routes.Assets.at("javascripts/jquery.tablesorter.js")"></script>
-
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.tablesorter.js")"></script>
 <script>
-$(document).ready(function() { 
-    $('#myTable').tablesorter({ 
-        headers: {2: {sorter: false}} 
-    }); 
-});
+	$(document).ready(function() {
+		$('#myTable').tablesorter({
+			headers : {
+				2 : {
+					sorter : false
+				}
+			}
+		});
+	});
 </script>
 </head>
 <body>
 	@tpltopmenu("MAIN MENU")
+	
+	<form id="newcontactform" method="post" action="/contact/new"></form>
+
 	<section>
-	<table id="myTable" class="tablesorter" >
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th class="colselect">Select</th>
-			</tr>
-		</thead>
-		<tbody>
-			@contactList.map {contact =>
+		<table id="myTable" class="tablesorter">
+			<thead>
 				<tr>
-					<td>
-						<a href="@routes.Contacts.contactform(contact.id)">@(contact.firstName + " " + contact.lastName)</a>
-					</td>
+					<th>Name</th>
+					<th>Email</th>
+					<th class="colselect">Select</th>
+				</tr>
+			</thead>
+			<tbody>
+				@contactList.map {contact =>
+				<tr>
+					<td><a href="@routes.Application.viewcontactform(contact.id)">@(contact.firstName
+							+ " " + contact.lastName)</a></td>
 					<td>@contact.emailAddy</td>
 					<td class="colselect">
-				<input type="radio" name="tbselect" value="@contact.id"/></td>
+						<input type="checkbox" id="ckrowselect" name="ckrowselect"/>
+					</td>
 				</tr>
-			}
-		</tbody>
-	</table>
-	<div class="formActions">
-		<input class="buttons" type="submit" value="New" /> 
-		<input class="buttons" type="submit" value="Delete" /> 
-	</div>
+				}
+			</tbody>
+		</table>
+		
+		<div class="formActions">
+			<input class="buttons" type="submit" value="New" form="newcontactform" /> 
+			<input class="buttons" type="submit" value="Delete" form="deletecontactform" />
+		</div>
 	</section>
 	@tplfooter()
 </body>

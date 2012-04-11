@@ -35,9 +35,13 @@ object ContactRepos {
     return 0
   }
 
-  def getContact(id: String): Contact = {
+  def mongoObjToString(obj: Option[Any]): String =
+    obj match {
+      case None => ""
+      case Some(x) => x.toString
+    }
 
-    //val oid = id.asInstanceOf[Option[String]]
+  def getContact(id: String): Contact = {
     val conn = MongoConnection()
     val coll = conn("learn")("contacts")
     val objectId: ObjectId = new ObjectId(id.asInstanceOf[String])
@@ -45,16 +49,15 @@ object ContactRepos {
     val results = coll.findOne(MongoDBObject("_id" -> objectId))
     val elem = results.head
 
-    val rid = elem.getAs[ObjectId]("_id") match { case Some(x) => x.toString }
-    val fname = elem.getAs[String]("fname") match { case Some(x) => x.toString }
-    val lname = elem.getAs[String]("lname") match { case Some(x) => x.toString }
-    val emal = elem.getAs[String]("emal") match { case Some(x) => x.toString }
-    val fon = elem.getAs[String]("fon") match { case Some(x) => x.toString }
-    val nota = elem.getAs[String]("nota") match { case Some(x) => x.toString }
+    val rid = mongoObjToString(elem.getAs[ObjectId]("_id"))
+    val fname = mongoObjToString(elem.getAs[String]("fname"))
+    val lname = mongoObjToString(elem.getAs[String]("lname"))
+    val emal = mongoObjToString(elem.getAs[String]("emal"))
+    val fon = mongoObjToString(elem.getAs[String]("fon"))
+    val nota = mongoObjToString(elem.getAs[String]("nota"))
 
     val cn = new Contact(rid, fname, lname, emal, fon, nota)
 
     return cn
   }
-
 }

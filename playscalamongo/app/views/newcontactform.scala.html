@@ -1,0 +1,45 @@
+@(contactForm: Form[Contact])
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contact Form</title>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")" />
+</head>
+<body>
+	@tpltopmenu("NEW Contact")
+	<form name="contactform" action="/contact" method="post">
+		<section id="personalinfo">
+			<header>
+				<h1>CONTACT INFO</h1>
+			</header>
+			<fieldset class="oneline">
+				<label>Name</label> 
+				@helper.inputText(contactForm("firstName"), '_label -> "", 'required -> "required", 'placeholder -> "Joe")
+				@helper.inputText(contactForm("lastName"), '_label -> "",'required -> "required", 'placeholder -> "Smith")
+			</fieldset>
+			<fieldset>
+				@helper.inputText(contactForm("emailAddy"), '_label -> "Email", 'type -> "email", 'required -> "required", 'placeholder -> "email@domain.com")
+			</fieldset>
+			<fieldset>
+				@helper.inputText(contactForm("phoneNo"), '_label -> "Phone", 'type -> "tel", 'required -> "required", 'placeholder -> "###-###-####")
+			</fieldset>
+		</section>
+		<section id="contactnotes">
+			<header>
+				<h1>NOTES</h1>
+			</header>
+			<fieldset class="multiline">
+				@helper.inputText(contactForm("personNotes"), '_label -> "")
+			</fieldset>
+		</section>
+		<div class="formActions">
+			<input class="buttons" type="submit" value="Save"/>
+			<a href="@routes.Application.index">
+				<input class="buttons" type="button" value="Cancel"/> 
+			</a>
+		</div>
+	</form>
+</body>
+</html>

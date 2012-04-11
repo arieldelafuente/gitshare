@@ -1,4 +1,6 @@
-@(contactForm: Form[Contact])
+@(contactForm: Form[Contact], contactId: String, crudAction: String)
+
+@import helper._
 
 <!DOCTYPE html>
 <html>
@@ -6,24 +8,27 @@
 <meta charset="UTF-8">
 <title>Contact Form</title>
 <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")" />
-</head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/contactform.js")"></script>
+</head>	
 <body>
-	@tpltopmenu("Add New Contact")
-	<form name="contactform" action="/contact" method="post">
+	@tpltopmenu(crudAction + " Contact")
+	
+	@form(routes.Contacts.save(contactId)) {
 		<section id="personalinfo">
 			<header>
-				<h1>PERSONAL INFO</h1>
+				<h1>CONTACT INFO</h1>
 			</header>
 			<fieldset class="oneline">
 				<label>Name</label> 
-				@helper.inputText(contactForm("firstName"), '_label -> "", 'required -> "required", 'placeholder -> "Joe")
-				@helper.inputText(contactForm("lastName"), '_label -> "",'required -> "required", 'placeholder -> "Smith")
+				@helper.inputText(contactForm("firstName"), 'class -> "contactfield", '_label -> "", 'required -> "required", 'placeholder -> "Joe")
+				@helper.inputText(contactForm("lastName"), 'class -> "contactfield", '_label -> "",'required -> "required", 'placeholder -> "Smith")
 			</fieldset>
 			<fieldset>
-				@helper.inputText(contactForm("emailAddy"), '_label -> "Email", 'type -> "email", 'required -> "required", 'placeholder -> "email@domain.com")
+				@helper.inputText(contactForm("emailAddy"), 'class -> "contactfield", '_label -> "Email", 'type -> "email", 'required -> "required", 'placeholder -> "email@domain.com")
 			</fieldset>
 			<fieldset>
-				@helper.inputText(contactForm("phoneNo"), '_label -> "Phone", 'type -> "tel", 'required -> "required", 'placeholder -> "###-###-####")
+				@helper.inputText(contactForm("phoneNo"), 'class -> "contactfield", '_label -> "Phone", 'type -> "tel", 'required -> "required", 'placeholder -> "###-###-####")
 			</fieldset>
 		</section>
 		<section id="contactnotes">
@@ -31,11 +36,18 @@
 				<h1>NOTES</h1>
 			</header>
 			<fieldset class="multiline">
-				@helper.inputText(contactForm("personNotes"), '_label -> "")
+				@helper.inputText(contactForm("personNotes"), 'class -> "contactfield", '_label -> "")
 			</fieldset>
 		</section>
-		<p>
-		<a href="@routes.Application.index">Back</a>
-	</form>
+		<div class="formActions">
+			<input class="buttons" id="btnSave" type="submit" value="Save"/> 
+			<input class="buttons" id="btnCancel" type="button" value="Cancel"/>
+			<input class="buttons" id="btnEdit" type="button" value="Edit"/> 
+			<input class="buttons" id="btnDelete" type="button" value="Delete"/>
+			<a href="@routes.Application.index">
+				<input class="buttons" id="btnBack" type="button" value="Back"/> 
+			</a>
+		</div>
+	}
 </body>
 </html>
