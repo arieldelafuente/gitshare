@@ -14,11 +14,12 @@
 <body>
 	@tpltopmenu(crudAction + " Contact")
 	
-	@form(routes.Contacts.save(contactId)) {
+	@form(routes.Contacts.submit) {
 		<section id="personalinfo">
 			<header>
 				<h1>CONTACT INFO</h1>
 			</header>
+			@helper.inputText(contactForm("id"), '_label -> "", 'hidden -> "hidden")			
 			<fieldset class="oneline">
 				<label>Name</label> 
 				@helper.inputText(contactForm("firstName"), 'class -> "contactfield", '_label -> "", 'required -> "required", 'placeholder -> "Joe")

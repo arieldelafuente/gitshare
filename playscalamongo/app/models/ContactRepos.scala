@@ -26,8 +26,35 @@ object ContactRepos {
     conn.close
     return Nil
   }
+  
+  def updateContact(c: Contact): Int = {
+    val conn = MongoConnection()
+    val coll = conn("learn")("contacts")
+     
+    val updcontact = MongoDBObject(
+        "_id" -> new ObjectId(c.id.asInstanceOf[String]), 
+        "fname" -> c.firstName,
+        "lname" -> c.lastName,
+        "emal" -> c.emailAddy,
+        "fon" -> c.phoneNo,
+        "nota" -> c.personNotes)
+    coll.update(coll.findOne(MongoDBObject("_id" -> new ObjectId(c.id.asInstanceOf[String]))).head,updcontact)
+    
+    return 0
+  }
 
   def insertContact(c: Contact): Int = {
+    val conn = MongoConnection()
+    val coll = conn("learn")("contacts")
+     
+    val inscontact = MongoDBObject(
+        "fname" -> c.firstName,
+        "lname" -> c.lastName,
+        "emal" -> c.emailAddy,
+        "fon" -> c.phoneNo,
+        "nota" -> c.personNotes)
+    coll.insert(inscontact)
+        
     return 0
   }
 

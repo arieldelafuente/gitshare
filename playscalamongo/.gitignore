@@ -6,3 +6,4 @@ tmp
 .history
 .classpath
 .settings
+.cache

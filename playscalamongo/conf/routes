@@ -4,11 +4,10 @@
 
 # Home page
 GET     /                    controllers.Application.index
-
-GET     /contact/:id         controllers.Application.viewcontactform(id: String)
 POST    /contact/new         controllers.Application.newcontactform
-
-POST    /contact/save        controllers.Contacts.save(id: String)
+GET     /contact/:id         controllers.Application.viewcontactform(id: String)
+POST    /contact/submit      controllers.Contacts.submit
+POST    /contact/insert      controllers.Contacts.insert
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file	controllers.Assets.at(path="/public", file)
