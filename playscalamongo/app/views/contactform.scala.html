@@ -1,4 +1,4 @@
-@(contactForm: Form[Contact], contactId: String, crudAction: String)
+@(contactForm: Form[Contact], id: String, crudAction: String)
 
 @import helper._
 
@@ -14,7 +14,11 @@
 <body>
 	@tpltopmenu(crudAction + " Contact")
 	
-	@form(routes.Contacts.submit) {
+	@form(action = routes.Contacts.delete(id), 'id -> "formDelete") {
+		<input type="hidden" name="deleteAct"/>
+	}
+	
+	@form(action = routes.Contacts.submit) {
 		<section id="personalinfo">
 			<header>
 				<h1>CONTACT INFO</h1>
@@ -22,7 +26,7 @@
 			@helper.inputText(contactForm("id"), '_label -> "", 'hidden -> "hidden")			
 			<fieldset class="oneline">
 				<label>Name</label> 
-				@helper.inputText(contactForm("firstName"), 'class -> "contactfield", '_label -> "", 'required -> "required", 'placeholder -> "Joe")
+				@helper.inputText(contactForm("firstName"), 'required -> "required", 'class -> "contactfield", '_label -> "", 'placeholder -> "Joe")
 				@helper.inputText(contactForm("lastName"), 'class -> "contactfield", '_label -> "",'required -> "required", 'placeholder -> "Smith")
 			</fieldset>
 			<fieldset>
@@ -41,8 +45,9 @@
 			</fieldset>
 		</section>
 		<div class="formActions">
-			<input class="buttons" id="btnSave" type="submit" value="Save"/> 
-			<input class="buttons" id="btnCancel" type="button" value="Cancel"/>
+			<input class="buttons" id="btnSave" type="submit" value="Save"/>
+			<input class="buttons" id="btnConfirmDelete" type="submit" value="Delete" form="formDelete"/> 
+			<input class="buttons" id="btnCancel" type="reset" value="Cancel"/>
 			<input class="buttons" id="btnEdit" type="button" value="Edit"/> 
 			<input class="buttons" id="btnDelete" type="button" value="Delete"/>
 			<a href="@routes.Application.index">

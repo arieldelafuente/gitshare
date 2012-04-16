@@ -21,7 +21,7 @@
 			@helper.inputText(contactForm("id"), '_label -> "", 'hidden -> "hidden")
 			<fieldset class="oneline">
 				<label>Name</label> 
-				@helper.inputText(contactForm("firstName"), '_label -> "", 'required -> "required", 'placeholder -> "Joe")
+				@helper.inputText(contactForm("firstName"), '_label -> "", 'autofocus -> "autofocus", 'required -> "required", 'placeholder -> "Joe")
 				@helper.inputText(contactForm("lastName"), '_label -> "",'required -> "required", 'placeholder -> "Smith")
 			</fieldset>
 			<fieldset>
@@ -42,7 +42,7 @@
 		<div class="formActions">
 			<input class="buttons" type="submit" value="Save"/>
 			<a href="@routes.Application.index">
-				<input class="buttons" type="button" value="Cancel"/> 
+				<input class="buttons" type="reset" value="Cancel"/> 
 			</a>
 		</div>
 	}

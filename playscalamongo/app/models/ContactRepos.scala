@@ -57,8 +57,12 @@ object ContactRepos {
         
     return 0
   }
-
-  def deleteContact: Int = {
+  
+  def deleteContact(id: String): Int = {
+    val conn = MongoConnection()
+    val coll = conn("learn")("contacts")
+    
+    coll.remove(MongoDBObject("_id" -> new ObjectId(id.asInstanceOf[String])))
     return 0
   }
 

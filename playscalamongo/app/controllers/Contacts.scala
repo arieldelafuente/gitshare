@@ -16,7 +16,7 @@ object Contacts extends Controller {
       "emailAddy" -> text,
       "phoneNo" -> text,
       "personNotes" -> text)(Contact.apply)(Contact.unapply))
-  
+      
   def submit = Action { implicit request => 
     contactForm.bindFromRequest.fold(
         formWithErrors => {println("formWithErrors:" + formWithErrors)
@@ -26,6 +26,21 @@ object Contacts extends Controller {
           Ok(views.html.contacttable(ContactRepos.allContacts))
         })
   }
+
+  def delete(id: String) = Action { implicit request => 
+    ContactRepos.deleteContact(id)
+    Ok(views.html.contacttable(ContactRepos.allContacts))
+  }  
+  
+
+  def seldelete = Action { implicit request => 
+    request.body.asFormUrlEncoded match {
+      case Some(m1) => for ((id,on) <- m1) ContactRepos.deleteContact(id)
+      case _ => 
+    }
+    Ok(views.html.contacttable(ContactRepos.allContacts)) 
+  }
+
   
   def insert = Action { implicit request => 
     contactForm.bindFromRequest.fold(
@@ -36,9 +51,5 @@ object Contacts extends Controller {
           Ok(views.html.contacttable(ContactRepos.allContacts))
         })    
   }  
-  
-  def delete(id: String) = Action {
-    println("Contacts.delete: " + id)
-    Application.index
-  }  
+   
 }

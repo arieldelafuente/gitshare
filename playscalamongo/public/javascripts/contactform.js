@@ -5,6 +5,7 @@
 		function viewMode() {
 			$('.contactfield').each(function(){$(this).attr('readonly',true)});
 			$('#btnSave').css('display','none');
+			$('#btnConfirmDelete').css('display','none');
 			$('#btnCancel').css('display','none');
 			$('#btnEdit').css('display','inline');
 			$('#btnDelete').css('display','inline');
@@ -13,7 +14,8 @@
 
 		function editMode(roflag) {
 			$('.contactfield').each(function(){$(this).attr('readonly',roflag)});
-			$('#btnSave').css('display','inline');
+			$('#btnSave').css('display','none');
+			$('#btnConfirmDelete').css('display','none');
 			$('#btnCancel').css('display','inline');
 			$('#btnEdit').css('display','none');
 			$('#btnDelete').css('display','none');
@@ -24,18 +26,21 @@
 			viewMode();
 		});
 
+
 		$('#btnCancel').click(function() {
 			viewMode();
 		});
 		
 		$('#btnEdit').click(function() {
-			$('#btnSave').attr('value','Save')
 			editMode(false);
+			$('#btnSave').css('display','inline');
+			
 		});
 
 		$('#btnDelete').click(function() {
-			$('#btnSave').attr('value','Delete')			
 			editMode(true);
+			$('#btnConfirmDelete').css('display','inline');
+			
 		});	
 		
 	});

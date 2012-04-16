@@ -1,4 +1,7 @@
 @(contactList: List[Contact])
+
+@import helper._
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,37 +26,43 @@
 </head>
 <body>
 	@tpltopmenu("MAIN MENU")
-	
-	<form id="newcontactform" method="post" action="/contact/new"></form>
 
-	<section>
-		<table id="myTable" class="tablesorter">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th class="colselect">Select</th>
-				</tr>
-			</thead>
-			<tbody>
-				@contactList.map {contact =>
-				<tr>
-					<td><a href="@routes.Application.viewcontactform(contact.id)">@(contact.firstName
-							+ " " + contact.lastName)</a></td>
-					<td>@contact.emailAddy</td>
-					<td class="colselect">
-						<input type="checkbox" id="ckrowselect" name="ckrowselect"/>
-					</td>
-				</tr>
-				}
-			</tbody>
-		</table>
-		
-		<div class="formActions">
-			<input class="buttons" type="submit" value="New" form="newcontactform" /> 
-			<input class="buttons" type="submit" value="Delete" form="deletecontactform" />
-		</div>
-	</section>
+
+	@form(action = routes.Application.newcontactform, 'id -> "formNew") {
+		<input type="hidden" name="newAct"/>
+	}
+	
+	@form(action = routes.Contacts.seldelete, 'id -> "formSelectDelete") {
+	
+		<section>
+			<table id="myTable" class="tablesorter">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th class="colselect">Select</th>
+					</tr>
+				</thead>
+				<tbody>
+					@contactList.map {contact =>
+					<tr>
+						<td><a href="@routes.Application.viewcontactform(contact.id)">@(contact.firstName
+								+ " " + contact.lastName)</a></td>
+						<td>@contact.emailAddy</td>
+						<td class="colselect">
+							<input type="checkbox" name="@contact.id" form="formSelectDelete"/>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+			
+			<div class="formActions">
+				<input class="buttons" type="submit" value="New" form="formNew" /> 
+				<input class="buttons" type="submit" value="Delete" form="formSelectDelete" />
+			</div>
+		</section>
+	}
 	@tplfooter()
 </body>
 </html>
