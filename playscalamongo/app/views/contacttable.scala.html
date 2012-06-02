@@ -9,24 +9,14 @@
 <title>Contacts Table</title>
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/>
 <link rel="stylesheet" href="@routes.Assets.at("stylesheets/tableview.css")" type="text/css" id="" media="print, projection, screen" />
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/jquery-ui-1.8.19.custom.css")"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-ui-1.8.19.custom.min.js")"></script>
 <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.tablesorter.js")"></script>
-<script>
-	$(document).ready(function() {
-		$('#myTable').tablesorter({
-			headers : {
-				2 : {
-					sorter : false
-				}
-			}
-		});
-	});
-</script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/contacttable.js")"></script>
 </head>
 <body>
 	@tpltopmenu("MAIN MENU")
-
 
 	@form(action = routes.Application.newcontactform, 'id -> "formNew") {
 		<input type="hidden" name="newAct"/>
@@ -57,9 +47,13 @@
 				</tbody>
 			</table>
 			
+			<div id="confirmdelete" title="Delete Contacts?">
+				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 10px 0;"></span>Are you sure?</p>
+			</div>
+						
 			<div class="formActions">
-				<input class="buttons" type="submit" value="New" form="formNew" /> 
-				<input class="buttons" type="submit" value="Delete" form="formSelectDelete" />
+				<input class="buttons" type="submit" id="btnnew" value="New" form="formNew" /> 
+				<input class="buttons" type="submit" id="btndelete" value="Delete" form="formSelectDelete" />
 			</div>
 		</section>
 	}
