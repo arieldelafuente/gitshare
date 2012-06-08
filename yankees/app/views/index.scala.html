@@ -1,3 +1,5 @@
+@(playerList: List[Player])
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,6 +9,35 @@
 		<link rel="stylesheet" media="all" href="@routes.Assets.at("stylesheets/styles.css")" />
 	</head>
 	<body>
-		<h1>Let's Play</h1>
+		<h1>Player List</h1>
+		@if(!playerList.isEmpty) {
+
+		<div>
+			<label>Found @playerList.length record(s).</label>
+		</div>
+
+		<table id="myTable">
+			<thead>
+				<tr>
+					<th>Player #</th>
+					<th>Name</th>
+					<th>Hometown</th>
+				</tr>
+			</thead>
+			<tbody>
+				@playerList.map {player =>
+				<tr>
+					<td>@player.getPlayerNumber</td>
+					<td>@player.getPlayerName</td>
+					<td>@player.getAddress</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		} else {
+		<div>
+			<label>No results found.</label>
+		</div>
+		}
 	</body>
 </html>
