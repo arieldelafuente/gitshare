@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                    controllers.Application.index
+POST		/                    controllers.Contacts.seldelete
+
+POST    /contact/new         controllers.Application.newcontactform
+GET     /contact/:id         controllers.Application.viewcontactform(id: String)
+
+POST    /                    controllers.Contacts.submit
+POST    /contact/delete      controllers.Contacts.delete(id: String)
+POST    /contact/insert      controllers.Contacts.insert
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file	controllers.Assets.at(path="/public", file)

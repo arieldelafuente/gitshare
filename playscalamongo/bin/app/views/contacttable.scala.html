@@ -1,0 +1,62 @@
+@(contactList: List[Contact])
+
+@import helper._
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contacts Table</title>
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/tableview.css")" type="text/css" id="" media="print, projection, screen" />
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/jquery-ui-1.8.19.custom.css")"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-ui-1.8.19.custom.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.tablesorter.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/contacttable.js")"></script>
+</head>
+<body>
+	@tpltopmenu("MAIN MENU")
+
+	@form(action = routes.Application.newcontactform, 'id -> "formNew") {
+		<input type="hidden" name="newAct"/>
+	}
+	
+	@form(action = routes.Contacts.seldelete, 'id -> "formSelectDelete") {
+	
+		<section>
+			<table id="myTable" class="tablesorter">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th class="colselect">Select</th>
+					</tr>
+				</thead>
+				<tbody>
+					@contactList.map {contact =>
+					<tr>
+						<td><a href="@routes.Application.viewcontactform(contact.id)">@(contact.firstName
+								+ " " + contact.lastName)</a></td>
+						<td>@contact.emailAddy</td>
+						<td class="colselect">
+							<input type="checkbox" name="@contact.id" form="formSelectDelete"/>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+			
+			<div id="confirmdelete" title="Delete Contacts?">
+				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 10px 0;"></span>Are you sure?</p>
+			</div>
+						
+			<div class="formActions">
+				<input class="buttons" type="submit" id="btnnew" value="New" form="formNew" /> 
+				<input class="buttons" type="submit" id="btndelete" value="Delete" form="formSelectDelete" />
+			</div>
+		</section>
+	}
+	@tplfooter()
+</body>
+</html>

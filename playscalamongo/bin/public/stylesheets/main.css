@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+footer {
+	position: absolute;
+	bottom: 0px;
+	height: 50px;
+	width: 100%;
+}
+
+label {
+	font-size: 1em;
+}
+
+input {
+	font-size: 1em;
+}
+
+fieldset > dl {
+	display: block;
+	margin: 5px 0px;
+}
+
+fieldset > dl > dt {
+	display: inline-block;
+	width: 100px;
+}
+
+fieldset > dl > dd {
+	display: inline-block;
+	margin-left: 0px;
+}
+
+fieldset  {
+	vertical-align: middle;
+	margin: 10px 0px;
+	border: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 0px
+}
+
+fieldset.oneline label {
+	display: inline-block;
+	width: 100px;
+}
+
+fieldset.oneline > dl > dd {
+	display: inline-block;
+	margin-left: 0px;
+}
+
+fieldset.oneline > dl > dt {
+	display: none;
+}
+
+fieldset.oneline > dl {
+	display: inline-block;
+	margin: 0px;
+}
+
+fieldset.oneline {
+	margin: 10px 0px;
+}
+
+fieldset.multiline > dl {
+	display: block;
+	margin: 5px 0px;
+}
+
+fieldset.multiline > dl > dt {
+	display: none;
+}
+
+fieldset.multiline > dl > dd {
+	display: inline-block;
+	margin-left: 0px;
+}
+
+fieldset.multiline {
+	vertical-align: middle;
+	margin: 10px 0px;
+}
+
+section > header > h1 {
+	font-weight: bold;
+	font-size: 1em;
+	line-height: 1.1;
+	color: #fff;
+	background: #666;
+	border: 1px solid #333;
+	padding: 2px 6px;
+}
+
+#personNotes {
+	height: 100px;
+	width: 600px;
+}
+
+label[for="nota"] {
+	vertical-align: top;
+}
+
+.formActions {
+	padding-top: 5px;
+	padding-left: 15px;
+}
+
+.buttons {
+	display: inline;
+	width: 5em;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+}

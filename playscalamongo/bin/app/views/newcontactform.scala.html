@@ -1,0 +1,50 @@
+@(contactForm: Form[Contact])
+
+@import helper._
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contact Form</title>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/newcontactform.js")"></script>
+</head>
+<body>
+	@tpltopmenu("NEW Contact")
+	@form(routes.Contacts.insert) {
+		<section id="personalinfo">
+			<header>
+				<h1>CONTACT INFO</h1>
+			</header>
+			@helper.inputText(contactForm("id"), '_label -> "", 'hidden -> "hidden")
+			<fieldset class="oneline">
+				<label>Name</label> 
+				@helper.inputText(contactForm("firstName"), '_label -> "", 'autofocus -> "autofocus", 'required -> "required", 'placeholder -> "Joe")
+				@helper.inputText(contactForm("lastName"), '_label -> "",'required -> "required", 'placeholder -> "Smith")
+			</fieldset>
+			<fieldset>
+				@helper.inputText(contactForm("emailAddy"), '_label -> "Email", 'type -> "email", 'required -> "required", 'placeholder -> "email@domain.com")
+			</fieldset>
+			<fieldset>
+				@helper.inputText(contactForm("phoneNo"), '_label -> "Phone", 'type -> "tel", 'required -> "required", 'placeholder -> "###-###-####")
+			</fieldset>
+		</section>
+		<section id="contactnotes">
+			<header>
+				<h1>NOTES</h1>
+			</header>
+			<fieldset class="multiline">
+				@helper.inputText(contactForm("personNotes"), '_label -> "")
+			</fieldset>
+		</section>
+		<div class="formActions">
+			<input class="buttons" type="submit" value="Save"/>
+			<a href="@routes.Application.index">
+				<input class="buttons" type="reset" value="Cancel"/> 
+			</a>
+		</div>
+	}
+</body>
+</html>
